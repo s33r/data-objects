@@ -14,7 +14,6 @@ export default [
         languageOptions: {
             parser       : typescriptEslint.parser,
             parserOptions: {
-                project        : true,
                 tsconfigRootDir: import.meta.dirname,
             },
         },

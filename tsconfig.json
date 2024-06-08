@@ -1,6 +1,7 @@
 {
     "exclude": [
         "**/*.spec.ts",
+        "dist",
     ],
     "compilerOptions": {
         "outDir": "dist",
