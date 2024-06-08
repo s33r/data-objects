@@ -1,0 +1,25 @@
+{
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+
+    "eslint.experimental.useFlatConfig": true,
+    "eslint.format.enable": true,
+
+    "recommendations": [
+        "dbaeumer.vscode-eslint",
+        "streetsidesoftware.code-spell-checker",
+    ],
+
+    "cSpell.words": [
+        "ehwillows",
+        "perdec",
+    ],
+    "javascript.preferences.importModuleSpecifier": "non-relative",
+    "javascript.preferences.importModuleSpecifierEnding": "js",
+    "javascript.preferences.quoteStyle": "single",
+
+    "typescript.preferences.importModuleSpecifier": "non-relative",
+    "typescript.preferences.importModuleSpecifierEnding": "js",
+    "typescript.preferences.quoteStyle": "single",
+    "typescript.preferences.preferTypeOnlyAutoImports": true,
+}

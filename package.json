@@ -1,0 +1,36 @@
+{
+  "name": "@ehwillows/data-objects",
+  "version": "1.0.0",
+  "description": "A repository of data objects for examples",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "tsc": "tsc",
+    "test": "tsx test/index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/s33r/data-objects.git"
+  },
+  "author": "Erin Willows <erin@ehwillows>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/s33r/data-objects/issues"
+  },
+  "homepage": "https://github.com/s33r/data-objects#readme",
+  "dependencies": {
+    "yaml": "^2.4.4",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.4.0",
+    "@stylistic/eslint-plugin": "^2.1.0",
+    "@types/node": "^20.14.2",
+    "eslint-plugin-align-assignments": "^1.1.2",
+    "tsx": "^4.14.0",
+    "typescript": "^5.4.5",
+    "typescript-eslint": "^7.12.0",
+    "vite": "^5.2.13",
+    "vitest": "^1.6.0"
+  }
+}

@@ -1,0 +1,17 @@
+{
+    "include": [
+        "**/*",
+    ],
+    "compilerOptions": {
+        "outDir": "dist",
+
+        "noEmitOnError": true,
+        "target": "ESNext",
+        "module": "NodeNext",
+        "moduleResolution": "NodeNext",
+        "resolveJsonModule": true,
+        "esModuleInterop": true,
+        "strict": true,
+        "allowSyntheticDefaultImports": true,
+    }
+}
