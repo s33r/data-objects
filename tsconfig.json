@@ -1,4 +1,7 @@
 {
+    "exclude": [
+        "**/*.spec.ts",
+    ],
     "compilerOptions": {
         "outDir": "dist",
         "declaration": true,
@@ -12,9 +15,4 @@
         "strict": true,
         "allowSyntheticDefaultImports": true,
     },
-    "references": [
-        { "path": "./lib" },
-        { "path": "./test" },
-
-    ]
 }
