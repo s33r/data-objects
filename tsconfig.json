@@ -1,10 +1,8 @@
 {
-    "include": [
-        "**/*",
-    ],
     "compilerOptions": {
         "outDir": "dist",
-
+        "declaration": true,
+        "declarationMap": true,
         "noEmitOnError": true,
         "target": "ESNext",
         "module": "NodeNext",
@@ -13,5 +11,10 @@
         "esModuleInterop": true,
         "strict": true,
         "allowSyntheticDefaultImports": true,
-    }
+    },
+    "references": [
+        { "path": "./lib" },
+        { "path": "./test" },
+
+    ]
 }

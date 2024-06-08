@@ -1,12 +1,13 @@
 {
   "name": "@ehwillows/data-objects",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "A repository of data objects for examples",
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "tsc": "tsc",
-    "test": "tsx test/index.ts"
+    "clean": "rm -rf dist",
+    "test": "vitest",
+    "build": "npm run clean && tsc"
   },
   "repository": {
     "type": "git",
@@ -19,6 +20,7 @@
   },
   "homepage": "https://github.com/s33r/data-objects#readme",
   "dependencies": {
+    "jsonc-parser": "^3.2.1",
     "yaml": "^2.4.4",
     "zod": "^3.23.8"
   },

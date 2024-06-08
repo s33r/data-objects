@@ -1,0 +1,11 @@
+{
+    "include": [
+        "**/*",
+    ],
+    "exclude": [
+        "**/*.spec.*"
+    ],
+    "compilerOptions": {
+        "composite": true,
+    }
+}
