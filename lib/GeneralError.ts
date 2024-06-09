@@ -1,4 +1,5 @@
 import { ParseError, printParseErrorCode } from 'jsonc-parser';
+import type { YAMLError } from 'yaml';
 import { z } from 'zod';
 
 export interface GeneralErrorBag {
@@ -35,6 +36,40 @@ export default class GeneralError {
             message : `${prefix}${printParseErrorCode(error.error)}`,
             location: error.offset.toString(),
             code    : 'json-parse',
+        });
+    }
+
+    /**
+     * Transforms a yaml error into a GeneralError
+     * @param error The YAML error to convert
+     * @returns A GeneralError with the data from the YAML Issue.
+     */
+    static fromYamlParseError(error: YAMLError): GeneralError;
+
+    /**
+     * Transforms a yaml error into a GeneralError
+     * @param error The YAML error to convert
+     * @param message String to prepend to the error's message.
+     * @returns A GeneralError with the data from the YAML Issue.
+     */
+    static fromYamlParseError(
+        error: YAMLError,
+        message: string = '',
+    ): GeneralError {
+        const prefix = typeof message === 'string' ? message : '';
+
+        let location: string;
+
+        if(error.linePos) {
+            location = `${error.linePos[0]}:${error.linePos[1]}`;
+        } else {
+            location = `${error.pos[0]}:${error.pos[1]}`;
+        }
+
+        return new GeneralError({
+            message: `${prefix}${error.message}`,
+            code   : error.name,
+            location,
         });
     }
 

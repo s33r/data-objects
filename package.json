@@ -2,7 +2,7 @@
   "name": "@ehwillows/data-objects",
   "version": "0.0.1",
   "description": "A repository of data objects for examples",
-  "main": "index.js",
+  "main": "lib/index.js",
   "type": "module",
   "scripts": {
     "clean": "rm -rf dist",

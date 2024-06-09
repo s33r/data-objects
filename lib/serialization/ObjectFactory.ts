@@ -1,7 +1,9 @@
 import GeneralError from '../GeneralError.js';
 import type { ResultContainer } from '../ResultContainer.js';
-import parseJson from './parseJson.js';
+import { parseJson } from './parseJson.js';
 import { z } from 'zod';
+import * as DataFormat from './DataFormat.js';
+import { parseYaml } from './parseYaml.js';
 
 export interface ObjectFactoryPrototype<T_Bag, T_Class> {
     create         : (data: unknown) => T_Class;
@@ -9,6 +11,27 @@ export interface ObjectFactoryPrototype<T_Bag, T_Class> {
     readonly schema: z.ZodSchema<T_Bag>;
     new(data: T_Bag):T_Class;
 }
+
+const parseData = (
+    data: unknown,
+    format: DataFormat.Formats,
+): ResultContainer<unknown> => {
+    if(format === 'json') {
+        return parseJson(data);
+    } else if(format === 'yaml') {
+        return parseYaml(data);
+    } else if(format === 'object') {
+        return {
+            success: true,
+            data,
+        };
+    } else {
+        return {
+            success: false,
+            errors : [ new GeneralError(`Unknown format: ${format}`) ],
+        };
+    }
+};
 
 /**
  * Creates a new object using the provided constructor, if the creation fails, a list of errors are returned.
@@ -19,20 +42,15 @@ export interface ObjectFactoryPrototype<T_Bag, T_Class> {
 export const safeCreate = <T_Bag, T_Class> (
     data: unknown,
     Constructor: ObjectFactoryPrototype<T_Bag, T_Class>,
-    json: boolean = false,
+    format: DataFormat.Formats = DataFormat.JsObject,
 ): ResultContainer<T_Class> => {
     try {
-        if(json) {
-            const parsedToJson = parseJson(data);
+        const parseResult = parseData(data, format);
 
-            if(parsedToJson.success) {
-                return Constructor.safeCreate(parsedToJson.data);
-            } else {
-                return parsedToJson;
-            }
-
+        if(parseResult.success) {
+            return Constructor.safeCreate(parseResult.data);
         } else {
-            return Constructor.safeCreate(data);
+            return parseResult;
         }
     } catch(error) {
         if(error instanceof Error) {
@@ -46,7 +64,6 @@ export const safeCreate = <T_Bag, T_Class> (
                 errors : [ new GeneralError(`safeCreate failed: ${error}`) ],
             };
         }
-
     }
 };
 

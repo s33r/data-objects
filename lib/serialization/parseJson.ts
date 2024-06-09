@@ -4,13 +4,12 @@ import GeneralError from '../GeneralError.js';
 import { z } from 'zod';
 
 /**
- * Parses a json string into javascript.
- * @name parseJson
+ * Parses a json string into a javascript object.
  * @param content The string to parse.
  * @param options Options to control how this file is parsed.
  * @returns The results of the parse.
  */
-export default (
+export const parseJson = (
     content: unknown,
     options?: ParseOptions | number, // TODO: compatible with map but this can't be the best way??
 ): ResultContainer<unknown> => {
@@ -37,11 +36,9 @@ export default (
                 };
             }
         } else {
-            const errors = parsedToString.error.issues.map(GeneralError.fromZodIssue);
-
             return {
                 success: false,
-                errors,
+                errors : parsedToString.error.issues.map(GeneralError.fromZodIssue),
             };
         }
     } catch(error) {
